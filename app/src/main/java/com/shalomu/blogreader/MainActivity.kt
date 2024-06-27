@@ -5,12 +5,35 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.shalomu.blogreader.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.rvBlogs.layoutManager = LinearLayoutManager(this)
+        displayBlogs()
     }
+
+    fun displayBlogs() {
+        val blog1 = Blog("Chimamanda Adichie", "", "Women In Tech", "12/05/2024", "From the earliest stone advances in artificial intelligence has continuously transformed our lives.", "")
+        val blog2 = Blog("Moses Chakuwa", "", "AI Future", "20/10/2024", "Republican lawmakers, right-wing media outlets and influencers, and Trump himself are pushing conspiracies about Biden’s health and the debate in general.", "")
+        val blog3 = Blog("Laviella Noella", "", "Data In Tech", "12/06/2024", "There are many scary claims about excess time on digital devices for children and teenagers. ", "")
+        val blog4 = Blog("Manzi Kalisa", "", "Emotional Intelligence", "22/10/2024", "From the earliest stone advances in artificial intelligence has continuously transformed our lives.", "")
+        val blog5 = Blog("Brian Kayonga", "", "Python For Health ", "22/10/2024", "Republican lawmakers, right-wing media outlets and influencers, and Trump himself are pushing conspiracies about Biden’s health and the debate in general.", "")
+        val blog6 = Blog("Trevor Noah", "", "African Politics", "22/10/2024", "There are many scary claims about excess time on digital devices for children and teenagers. ", "")
+        val blog7 = Blog("Meghan Otieno", "", "Keep Your Mind Active", "22/10/2024", "From the earliest stone advances in artificial intelligence has continuously transformed our lives.", "")
+        val blog8 = Blog("Queen Bella", "", "Beauty of Science", "22/10/2024", "", "")
+        val blog9 = Blog("Deborah Umukundwa", "", "Tech For Environment", "22/10/2024", "There are many scary claims about excess time on digital devices for children and teenagers. ", "")
+        val blog10 = Blog("Luc Martin", "", "Live More", "22/10/2024", "From the earliest stone advances in artificial intelligence has continuously transformed our lives.", "")
+
+        val blogList = listOf(blog1, blog2, blog3, blog4, blog5, blog6, blog7, blog8, blog9, blog10)
+        val blogAdapter = BlogsAdapter(blogList)
+        binding.rvBlogs.adapter = blogAdapter
+
+    }
+}
